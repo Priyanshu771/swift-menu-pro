@@ -1,0 +1,64 @@
+{
+  "shopInfo": {
+    "name": "Tasty Bites",
+    "tagline": "Delicious Food, Delivered Fast!",
+    "address": "123 Main Street, Food District, City - 123456",
+    "phone": "+1234567890",
+    "whatsapp": "+1234567890",
+    "email": "orders@tastybites.com",
+    "openingHours": "Mon - Sun: 11:00 AM - 10:00 PM",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1841841841845!2d-73.98784368459394!3d40.74844097932761!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDDCsDQ0JzU0LjQiTiA3M8KwNTknMTYuMyJX!5e0!3m2!1sen!2sus!4v1234567890123!5m2!1sen!2sus",
+    "socialMedia": {
+      "facebook": "https://facebook.com/tastybites",
+      "instagram": "https://instagram.com/tastybites",
+      "twitter": "https://twitter.com/tastybites"
+    }
+  },
+  "menuItems": [
+    {
+      "id": "1",
+      "name": "Momos",
+      "description": "Steamed dumplings filled with delicious vegetables",
+      "price": 120,
+      "image": "momos",
+      "category": "Appetizer",
+      "featured": true
+    },
+    {
+      "id": "2",
+      "name": "Chowmein",
+      "description": "Stir-fried noodles with fresh vegetables",
+      "price": 150,
+      "image": "chowmein",
+      "category": "Main Course",
+      "featured": true
+    },
+    {
+      "id": "3",
+      "name": "Pasta",
+      "description": "Creamy white sauce pasta with vegetables",
+      "price": 180,
+      "image": "pasta",
+      "category": "Main Course",
+      "featured": true
+    },
+    {
+      "id": "4",
+      "name": "Manchurian",
+      "description": "Crispy vegetable balls in tangy sauce",
+      "price": 140,
+      "image": "manchurian",
+      "category": "Appetizer",
+      "featured": false
+    },
+    {
+      "id": "5",
+      "name": "Fried Rice",
+      "description": "Colorful fried rice with mixed vegetables",
+      "price": 160,
+      "image": "fried-rice",
+      "category": "Main Course",
+      "featured": false
+    }
+  ]
+}
