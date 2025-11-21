@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import shopData from "@/data/shopData.json";
+import { useShopData } from "@/context/ShopDataContext";
 
 interface OrderModalProps {
   isOpen: boolean;
@@ -16,6 +16,7 @@ interface OrderModalProps {
 }
 
 const OrderModal = ({ isOpen, onClose, itemName }: OrderModalProps) => {
+  const { shopData } = useShopData();
   const handleWhatsAppOrder = () => {
     const message = encodeURIComponent(`Hi! I'd like to order ${itemName}`);
     window.open(`https://wa.me/${shopData.shopInfo.whatsapp}?text=${message}`, "_blank");

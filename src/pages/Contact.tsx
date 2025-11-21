@@ -3,9 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import shopData from "@/data/shopData.json";
+import { useShopData } from "@/context/ShopDataContext";
 
 const Contact = () => {
+  const { shopData } = useShopData();
   return (
     <div className="min-h-screen">
       <Navigation />

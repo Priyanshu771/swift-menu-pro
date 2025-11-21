@@ -2,11 +2,12 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import shopData from "@/data/shopData.json";
+import { useShopData } from "@/context/ShopDataContext";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { shopData } = useShopData();
 
   const navLinks = [
     { name: "Home", path: "/" },

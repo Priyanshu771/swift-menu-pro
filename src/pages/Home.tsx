@@ -4,10 +4,11 @@ import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import MenuCard from "@/components/MenuCard";
-import shopData from "@/data/shopData.json";
+import { useShopData } from "@/context/ShopDataContext";
 import heroBanner from "@/assets/hero-banner.jpg";
 
 const Home = () => {
+  const { shopData } = useShopData();
   const featuredItems = shopData.menuItems.filter((item) => item.featured);
 
   return (

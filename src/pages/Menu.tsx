@@ -1,9 +1,10 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import MenuCard from "@/components/MenuCard";
-import shopData from "@/data/shopData.json";
+import { useShopData } from "@/context/ShopDataContext";
 
 const Menu = () => {
+  const { shopData } = useShopData();
   return (
     <div className="min-h-screen">
       <Navigation />
