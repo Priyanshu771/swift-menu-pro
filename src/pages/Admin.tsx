@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useShopData, type ShopData, type MenuItem, type ShopInfo } from "@/context/ShopDataContext";
 
-const ADMIN_PASSCODE = "adminFood2024";
+const ADMIN_PASSCODE = "adminFood@2025";
 
 const emptyMenuItem: MenuItem = {
   id: "",
