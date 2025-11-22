@@ -20,6 +20,7 @@ const emptyMenuItem: MenuItem = {
 
 const Admin = () => {
   const { shopData, setShopData, resetToDefault } = useShopData();
+  const STORAGE_KEY = "swiftMenuPro.shopData";
   const [authorized, setAuthorized] = useState<boolean>(() => {
     return sessionStorage.getItem("adminAuthorized") === "true";
   });
@@ -94,6 +95,55 @@ const Admin = () => {
     setNewItem({ ...emptyMenuItem });
   };
 
+  // Utility actions to help move edits into repo JSON or reset local changes
+  const exportJson = () => {
+    try {
+      const blob = new Blob([JSON.stringify(editing, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "shopData-export.json";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (e) {
+      alert("Failed to export JSON");
+    }
+  };
+
+  const importJson = (file?: File) => {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(String(reader.result));
+        if (!parsed || !parsed.shopInfo || !Array.isArray(parsed.menuItems)) {
+          alert("Invalid JSON format. Expect { shopInfo, menuItems }.");
+          return;
+        }
+        setShopData(parsed);
+        setEditing(parsed);
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
+        } catch {}
+        alert("Imported data and saved locally.");
+      } catch (err) {
+        alert("Could not parse JSON file");
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  const clearLocalEdits = () => {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {}
+    resetToDefault();
+    setEditing(shopData);
+    alert("Cleared local edits. Reload to use repo JSON.");
+  };
+
   if (!authorized) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-muted">
@@ -132,6 +182,23 @@ const Admin = () => {
             <Button variant="outline" onClick={handleReset}>Reset to default</Button>
             <Button variant="hero" onClick={handleSave}>Save changes</Button>
           </div>
+        </div>
+
+        {/* Helper actions to move data between localStorage and repo JSON */}
+        <div className="flex flex-wrap items-center gap-2 mb-4">
+          <Button variant="outline" onClick={exportJson}>Export JSON</Button>
+          <label className="inline-flex items-center gap-2 text-sm">
+            <input
+              type="file"
+              accept="application/json"
+              onChange={(e) => importJson(e.target.files?.[0])}
+            />
+            Import JSON
+          </label>
+          <Button variant="outline" onClick={clearLocalEdits}>Clear local edits</Button>
+          <p className="text-xs text-muted-foreground">
+            Export then paste into <code>src/data/shopData.json</code> and redeploy for global changes.
+          </p>
         </div>
 
         <Tabs defaultValue="shop" className="w-full">
